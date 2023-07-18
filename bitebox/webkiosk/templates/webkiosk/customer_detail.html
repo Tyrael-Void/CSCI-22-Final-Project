@@ -1,0 +1,25 @@
+{% extends 'webkiosk/base_template.html' %}
+
+{% block pagetitle %}{{ customer.get_customer_initials }}{% endblock %}
+
+{% block maincontent %}
+<h1>{{ customer.firstname }} {{customer.lastname}}</h1>
+<ul>
+<li>Address: {{ customer.address }}</li>
+<li>City: {{ customer.city }}</li>
+</ul>
+
+
+<h2>Orders From This Customer:</h2>
+{% for order in order %}
+    <p>Order #: {{ order.id }}</p>
+    <p>Food Name: {{ order.food.name }}</p>
+    <p>Food Quantity: {{ order.quantity }}</p>
+    <p>Payment Mode: {{ order.get_paymentMode_display }}</p>
+    <p>Order Date and Time: {{ order.orderDateTime }}</p>
+    <hr>
+{% empty %}
+    <p>No orders found.</p>
+{% endfor %}
+
+{% endblock %}

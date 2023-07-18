@@ -1,0 +1,41 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> bITEbox Webkiosk - {% block pagetitle %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'webkiosk/styles/main.css' %}">
+  </head>
+  <body>
+    <header>
+      <img src="{% static 'webkiosk/images/bitebox.png' %}">
+      <h1>bITEbox</h1>
+      <p>Yum Yum Yummy</p>
+    </header>
+    {% block mainnav %}
+    <nav>
+      <ul>
+        <li><a href="{% url 'webkiosk:food-list' %}">Menu</a></li>
+        <li><a href="{% url 'webkiosk:food-create' %}">Add Food</a></li>
+        <li><a href="{% url 'webkiosk:customer-list' %}">Customer</a></li>
+        <li><a href="{% url 'webkiosk:add-customer' %}">Add Customer</a></li>
+        <li><a href="{% url 'webkiosk:order-list' %}">Orders</a></li>
+        <li><a href="{% url 'webkiosk:order-form' %}">Add Order</a></li>
+      </ul>
+    </nav>
+    {% endblock %}
+    <main>
+        {% block maincontent %}
+        
+        {% endblock %}
+    </main>
+    {% if user.is_authenticated %}
+    <form action="{% url 'webkiosk:logout' %}" method="post" class="logout-form">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+{% endif %}
+  </body>
+</html>

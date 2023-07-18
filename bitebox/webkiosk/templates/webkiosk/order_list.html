@@ -1,0 +1,14 @@
+{% extends 'webkiosk/base_template.html' %}
+
+{% block pagetitle %}Orders{% endblock %}
+
+{% block maincontent %}
+<h2>Orders</h2>
+<ol>
+    {% for order in orderlist %}
+    <li>{{ order.customers.firstname }} {{ order.customers.lastname }} - {{ order.orderDateTime }} | <a href="{% url 'webkiosk:order-details' order.id %}">More Info</a> |  <a href="{% url 'webkiosk:order-update' order.id%}">Update Order Info</a> | <a href="{% url 'webkiosk:delete-order' order.id %}">Delete</a></li>
+    {% endfor %}
+</ol>
+
+
+{% endblock %}

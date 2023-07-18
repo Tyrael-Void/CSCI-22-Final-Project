@@ -1,0 +1,16 @@
+{% extends 'webkiosk/base_template.html' %}
+
+{% block pagetitle %}Delete Customer Profile{% endblock %}
+
+{% block mainnav %}{% endblock %}
+
+{% block maincontent %}
+<h2>Delete Order Profile</h2>
+
+<form method="post"> 
+    {% csrf_token %}
+    <p>Are you sure you want to delete the order of <b>{{ order.customers.firstname }} {{ order.customers.lastname }}</b> from <b>{{ order.orderDateTime }}</b>?</p>
+    <input type="submit" value="Yes">
+    <a href="{% url 'webkiosk:order-list' %}">Cancel</a>
+</form>
+{% endblock %}

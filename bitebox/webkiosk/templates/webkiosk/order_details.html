@@ -1,0 +1,16 @@
+{% extends 'webkiosk/base_template.html' %}
+
+{% block pagetitle %}{{ food.name }}{% endblock %}
+
+{% block maincontent %}
+<h2>Order No. {{order.pk}}</h2>
+<ul>
+<li>Customer Name: {{order.customers.firstname}} {{order.customers.lastname}}</li>
+<li>Food: {{order.food.name}}</li>
+<li>Quantity: {{order.quantity}}</li>
+<li>Payment Mode: {{order.paymentMode}}</li>
+<li>Date and Time of Order: {{order.orderDateTime}}</li>
+</ul>
+
+
+{% endblock %}
