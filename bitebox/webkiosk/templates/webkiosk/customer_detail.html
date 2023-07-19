@@ -17,7 +17,9 @@
     <p>Food Quantity: {{ order.quantity }}</p>
     <p>Payment Mode: {{ order.get_paymentMode_display }}</p>
     <p>Order Date and Time: {{ order.orderDateTime }}</p>
+    <p>Total Bill: {{ order.calculate_total_bill }}</p>  {# Calculate and display the total bill for each order #}
     <hr>
+    
 {% empty %}
     <p>No orders found.</p>
 {% endfor %}

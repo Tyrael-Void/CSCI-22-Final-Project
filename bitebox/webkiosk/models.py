@@ -47,9 +47,15 @@ class Order(models.Model):
     customers = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):
+        total_bill = self.calculate_total_bill()
         return f'''ORDER #:{self.id}
 CUSTOMER NAME | PRIMARY KEY: {self.customers.firstname} {self.customers.lastname} | {self.customers.pk}
 FOOD NAME: {self.food.name}
 FOOD QUANTITY: {self.quantity}
 PAYMENT MODE: {self.paymentMode}
-ORDER DATE AND TIME: {self.orderDateTime}'''
+ORDER DATE AND TIME: {self.orderDateTime}
+TOTAL BILL: {total_bill}'''
+
+
+    def calculate_total_bill(self):
+        return self.quantity * self.food.price
